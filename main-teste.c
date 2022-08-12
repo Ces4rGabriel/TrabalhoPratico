@@ -5,20 +5,10 @@
 int main(){
     char T[3][3];
     int QuantX = 0, QuantO = 0, QuantV = 0;
+    
+    entrada(T);
+    imprimir(T);
 
-    printf("Entrando com dados\n");
-
-    for(int i = 0; i < 3; i++)
-        for(int j = 0; j < 3; j++)
-            scanf("%c", &T[i][j]);
-
-
-    for(int i = 0; i < 3; i++){
-        for(int j = 0; j < 3; j++){
-            printf("%c ", T[i][j]);
-        }
-        printf("\n");
-    }
 
     //Função verifica quantidade de X
     for(int i = 0; i < 3; i++){

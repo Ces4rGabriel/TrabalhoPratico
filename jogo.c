@@ -1,13 +1,22 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "jogo.h"
 
 void entrada(char jogo[][3]){
     //entrada do vetor
+    printf("Entrando com dados\n");
     for (int i = 0; i < 3; i++){
         for (int j = 0; j < 3; j++){
             scanf("%c", &jogo[i][j]);
         }
+    }
+}
+
+void imprimir(char jogo[][3]){
+    //impressão do vetor
+    for (int i = 0; i < 3; i++){
+        for (int j = 0; j < 3; j++){
+            printf("%c ", jogo[i][j]);
+        }
+        printf("\n");
     }
 }
 void validar(char jogo[][3]){
@@ -20,4 +29,8 @@ void validar(char jogo[][3]){
             }
         }
     }
+}
+
+void vitoria(){
+
 }
