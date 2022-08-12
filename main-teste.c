@@ -8,46 +8,14 @@ int main(){
     
     entrada(T);
     imprimir(T);
-    Imprimindo(ty)
 
 
-    //Função verifica quantidade de X
-    for(int i = 0; i < 3; i++){
-        for(int j = 0; j < 3; j++){
-            if(T[i][j] == 120 || T[i][j] == 88){
-                QuantX++;
-            }
-        }
-     }
 
-    //Função verifica quantidade de O
-    for(int i = 0; i < 3; i++){
-        for(int j = 0; j < 3; j++){
-            if(T[i][j] == 79 || T[i][j] == 111){
-                QuantO++;
-            }
-        }
-     }
 
-    //Função verifica quantidade de V
-     for(int i = 0; i < 3; i++){
-        for(int j = 0; j < 3; j++){
-            if(T[i][j] == 86 || T[i][j] == 118){
-                QuantV++;
-            }
-        }
-     }
+    //Função verifica estado do jogo
 
-       //Função verifica estado do jogo
-     printf("Quantidade de V: %d, X: %d, e O: %d\n", QuantV, QuantX, QuantO);
 
-      if((QuantX > 5)|| (QuantO > 5) || (QuantX >= 5 && QuantO < 4) || (QuantO>= 5 && QuantX < 4) ){
-        printf("Jogo Inválido\n");
-      }
 
-      if((T[0][0] == T[1][1])&&(T[1][1] == T[2][2]) || (T[0][2] == T[1][1])&&(T[1][1] == T[2][0]) ||((T[0][0] == T[0][1])&&(T[0][1] == T[0][2])) || ((T[1][0] == T[1][1])&&(T[1][1] == T[1][2])) || ((T[2][0] == T[2][1])&&(T[2][1] == T[2][2])) || ((T[0][0] == T[1][0])&&(T[1][0]==T[2][0])) || ((T[0][1] == T[1][1])&&(T[1][1]==T[2][1])) || ((T[0][2] == T[1][2])&&(T[1][2]==T[2][2]))){
-        printf("Jogo vencido\n");
-      }
 
 
 }
