@@ -8,6 +8,7 @@ int main(){
     
     entrada(T);
     imprimir(T);
+    Imprimindo(ty)
 
 
     //Função verifica quantidade de X
