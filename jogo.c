@@ -71,7 +71,7 @@ void vitoria(T[][3]){
     for (int i = 0; i < 3; i++){
         temp = T[i][0];
         for(int j = 0; j < 3; j++){
-            if(T[i][j] != temp){
+            if(T[i][j] != temp && temp != 'V'){
                 break;
             }
         }
