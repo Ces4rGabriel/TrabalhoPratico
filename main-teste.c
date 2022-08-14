@@ -2,22 +2,14 @@
 #include <stdlib.h>
 
 
+
 int main(){
-    char T[3][3];
+    char T[3][3] = {'V', 'V', 'V', 'X', 'X', 'X', 'X', 'X', 'X'};
     int QuantX = 0, QuantO = 0, QuantV = 0;
-    
-    entrada(T);
-    imprimir(T);
-
-
-
-
-    //Função verifica estado do jogo
-
-
-
-
-
+    int v;
+    v = vitoria(T);
+    printf("%d\n", v);
+    return 0;
 }
 
 /*
