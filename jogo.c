@@ -19,43 +19,46 @@ void imprimir(char jogo[][3]){
         printf("\n");
     }
 }
-void validar(char jogo[][3]){
-    //validar o vetor do jogo da velha
-    for (int i = 0; i < 3; i++){
-        for (int j = 0; j < 3; j++){
-            if (jogo[i][j] != 'X' && jogo[i][j] != 'O' && jogo[i][j] != 'V'){
-                printf("\nJogo invalido\n");
-                exit(0);
-            }
+int validar(char jogo[][3]){
+
+    for(int i = 0; i < 3; i++) {
+        for(int j = 0; j < 3; j++){
+            if((jogo[i][j] != 'X') || (jogo[i][j] != 'O') || (jogo[i][j] != 'V'))
+                return -1;
+
+            if(T[i][j] == 'X')
+                QuantX++;
+
+            if(T[i][j] == 'O')
+                QuantO++;    
         }
-    }
+    } 
+
     //Função verifica quantidade de X
     for(int i = 0; i < 3; i++){
         for(int j = 0; j < 3; j++){
-            if(T[i][j] == 120 || T[i][j] == 88){
-                QuantX++;
-            }
+            
         }
      }
 
     //Função verifica quantidade de O
     for(int i = 0; i < 3; i++){
         for(int j = 0; j < 3; j++){
-            if(T[i][j] == 79 || T[i][j] == 111){
-                QuantO++;
-            }
+            
+            
         }
      }
 
     //Função verifica quantidade de V
-     for(int i = 0; i < 3; i++){
+    /* for(int i = 0; i < 3; i++){
         for(int j = 0; j < 3; j++){
             if(T[i][j] == 86 || T[i][j] == 118){
                 QuantV++;
             }
         }
-     }
-    printf("Quantidade de V: %d, X: %d, e O: %d\n", QuantV, QuantX, QuantO);
+     }*/
+
+    
 
     if((QuantX > 5)|| (QuantO > 5) || (QuantX >= 5 && QuantO < 4) || (QuantO>= 5 && QuantX < 4) ){
         printf("Jogo Inválido\n");
