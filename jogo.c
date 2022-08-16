@@ -21,7 +21,7 @@ void imprimir(char jogo[][3]){
 }
 int validar(char jogo[][3]){
 
-    int QuantX, int QuantO;
+    int QuantX, QuantO;
 
     for(int i = 0; i < 3; i++) {
         for(int j = 0; j < 3; j++){
