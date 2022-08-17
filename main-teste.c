@@ -5,7 +5,7 @@
 
 int main(){
     char T[3][3] = {'V', 'V', 'V', 'X', 'X', 'X', 'X', 'X', 'X'};
-    int QuantX = 0, QuantO = 0, QuantV = 0;
+    int QuantX = 0, QuantO = 0;
     int v;
     v = vitoria(T);
     printf("%d\n", v);
