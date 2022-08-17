@@ -1,9 +1,24 @@
 #include "jogo.h"
 
-void entrada(char jogo[][3]){
-    //entrada do vetor
+char **alocaTabuleiro(){
+    int **m;
+    m = (int **) malloc(3 * sizeof(char *));
     for (int i = 0; i < 3; i++){
-        for (int j = 0; j < 3; j++){
+        m[i] = (int *) malloc(3 * sizeof(char));
+    }
+}
+
+void liberaMemoria(char **jogo){
+    for (int i = 0; i < 3; i++)
+        free(jogo[i]);
+    free(jogo);
+}
+
+
+void entrada(char jogo[][3]){
+    getchar();
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
             scanf("%c", &jogo[i][j]);
         }
     }
@@ -31,48 +46,50 @@ int validar(char jogo[][3], int *QuantX,int *QuantO){
 }
 
 int vitoria(char jogo[][3]){
-    // -2 = velha
-    // -1 = muitas vitorias
-    // 1 = vitoria
-
-    char temp;
-    int vrow = 0, vcol = 0, vdiag1 = 0, vdiag2 = 0;
-    int vitoria = -2;//velha
+    // 1: X ganhou
+    // 2: O ganhou
+    // 3: Empate
+    // 0: Jogo ainda não acabou
     //Game over - row
+
     for (int i = 0; i < 3; i++){
         if (jogo[i][0] == jogo[i][1] && jogo[i][1] == jogo[i][2] && jogo[i][0] != 'V'){
-            vrow++;
+            if (jogo[i][0] == 'X')
+                return 1;
+            else
+                return 2;
         }
     }
-    //verificar mais de uma vitoria na linha
-    if(vrow > 1)
-        return -1;  //mais de uma vitoria
     //Game over - col
     for (int j = 0; j < 3; j++){
         if (jogo[0][j] == jogo[1][j] && jogo[1][j] == jogo[2][j] && jogo[0][j] != 'V'){
-            vcol++;
+            if (jogo[0][j] == 'X')
+                return 1;
+            else
+                return 2;
         }
     }
-    //verificar mais de uma vitoria na coluna
-    if(vcol > 1)
-        return -1;  //mais de uma vitoria
     //game over - diagonal
-    for (int i = 0; i < 3; i++){
-        if (jogo[i][i] == jogo[i][i+1] && jogo[i][i+1] == jogo[i][i+2] && jogo[i][i] != 'V'){
-            vdiag1++;
-        }
+    if (jogo[0][0] == jogo[1][1] && jogo[1][1] == jogo[2][2] && jogo[0][0] != 'V'){
+        if (jogo[0][0] == 'X')
+            return 1;
+        else
+            return 2;
     }
     //game over - diagonal secundária
+    if(jogo[0][2] == jogo[1][1] && jogo[1][1] == jogo[2][0] && jogo[3][0] != 'V'){
+        if(jogo[0][2] == 'X')
+            return 1;
+        else
+            return 2;
+    }
+    //game over - empate
     for(int i = 0; i < 3; i++){
-        if(jogo[i][2-i] == jogo[i][1-i] && jogo[i][1-i] == jogo[i][0-i] && jogo[i][2-i] != 'V'){
-            vdiag2++;
+        for(int j = 0; j < 3; j++){
+            if(jogo[i][j] == 'V')
+                return 0;
         }
     }
-    //verificar se existe mais de uma vitoria
-    if (vdiag2+vdiag1+vrow+vcol == 1)
-        return 1;   //uma vitoria
-    else
-        return -1;  //mais de uma vitoria
-    
-    return vitoria;
+    //game over - o jogo não acabou
+    return 3;
 }
