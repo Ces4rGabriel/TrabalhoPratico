@@ -1,25 +1,29 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include "jogo.h"
 
 int main(){
-    int qtdTabuleiro, QuantX = 0, QuantO = 0, vit, check, contador = 0;
+    int qtdTabuleiro,vit, check, contador = 0;
+    //int v;
     char **jogo;
     //numero de tabuleiros a ser analisado
     scanf("%d", &qtdTabuleiro);
     //main loop
     while (contador < qtdTabuleiro){
-        jogo = alocaTabuleiro();
+       jogo = alocaTabuleiro();
         entrada(jogo);
-        check = validar(jogo, &QuantX, &QuantO);
+        check = validar(jogo);
+
+        if(check == 1)
+            return 0;
         //função que o resultado
         vit = vitoria(jogo);
         //função que recebe jogo, v, contador, quantX e quantO e imprime o resultado   
         contador++;
-        liberaMemoria(jogo);
+        liberaMemoria(&jogo);
     }
-    imprimir(T);
-    v = vitoria(T);
-    printf("%d\n", v);
+   //imprimir(jogo);
+    //v = vitoria(jogo);
+    printf("%d\n", vit);
     return 0;
 }
 

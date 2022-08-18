@@ -3,12 +3,12 @@
 
 char **alocaTabuleiro();
 
-void liberaMemoria(char **jogo);
+void liberaMemoria(char ***jogo);
 
-void entrada(char jogo[][3]);
+void entrada(char **jogo);
 
-void validar(char jogo[][3], int *QuantX,int *QuantO);
+int validar(char **jogo);
 
-int vitoria (char jogo[][3]);
+int vitoria (char **jogo);
 
 #endif //jogo_da_velha_h

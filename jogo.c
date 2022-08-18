@@ -1,21 +1,24 @@
-#include "jogo.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "jogo.h" 
 
 char **alocaTabuleiro(){
-    int **m;
-    m = (int **) malloc(3 * sizeof(char *));
-    for (int i = 0; i < 3; i++){
-        m[i] = (int *) malloc(3 * sizeof(char));
-    }
-}
-
-void liberaMemoria(char **jogo){
+    char **Tabuleiro;
+    Tabuleiro = (char **) malloc(3 * sizeof(char *));
     for (int i = 0; i < 3; i++)
-        free(jogo[i]);
-    free(jogo);
+        Tabuleiro[i] = (char *) malloc(3 * sizeof(char));
+
+    return Tabuleiro;
+}
+
+void liberaMemoria(char ***jogo){
+    for (int i = 0; i < 3; i++)
+        free((*jogo)[i]);
+    free(*jogo);
 }
 
 
-void entrada(char jogo[][3]){
+void entrada(char **jogo){
     getchar();
     for(int i = 0; i < 3; i++){
         for(int j = 0; j < 3; j++){
@@ -24,28 +27,25 @@ void entrada(char jogo[][3]){
     }
 }
 
-int validar(char jogo[][3], int *QuantX,int *QuantO){
+int validar(char **jogo){
+    int QuantX, QuantO;
 
     for(int i = 0; i < 3; i++) {
         for(int j = 0; j < 3; j++){
-            if((jogo[i][j] != 'X') || (jogo[i][j] != 'O') || (jogo[i][j] != 'V'))
-                return 1;
-
             if(jogo[i][j] == 'X')
-                *QuantX++;
+                QuantX++;
 
             if(jogo[i][j] == 'O')
-                *QuantO++;    
+                QuantO++;    
         }
     } 
 
-    if((QuantX > 5)||(QuantO > 5) (QuantX >= 5 && Quant0 < 4) || (QuantO >= 5 && QuantX < 4)){
-        return -1;
-    }
+    printf("%d\n", QuantX - QuantO);
 
+    return 0;
 }
 
-int vitoria(char jogo[][3]){
+int vitoria(char **jogo){
     // 1: X ganhou
     // 2: O ganhou
     // 3: Empate
