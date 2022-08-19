@@ -6,7 +6,7 @@ int main(){
     Jogadas *jogadores;
     char **jogo;
     //numero de tabuleiros a ser analisado
-    scanf("%d", &qtdTabuleiro);
+    scanf("%d ", &qtdTabuleiro);
     //main loop
     while (contador < qtdTabuleiro){
         contador++;
@@ -20,7 +20,6 @@ int main(){
         }
         //função que analisa e da o resultado
         analisar(jogo, contador, jogadores);
-        
         liberaMemoria(&jogo);
     }
     return 0;

@@ -31,14 +31,23 @@ void liberaMemoria(char ***jogo){
 
 
 void entrada(char **jogo){
-    getchar();
+
     for(int i = 0; i < 3; i++){
         for(int j = 0; j < 3; j++){
             scanf("%c", &jogo[i][j]);
         }
     }
+    scanf(" ");
 }
 
+void imprimir(char **jogo){
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
+            printf("%c ", jogo[i][j]);
+        }
+        printf("\n");
+    }
+}
 int validar(char **jogo, Jogadas *jogadas){
     jogadas->quantO = 0;
     jogadas->quantX = 0;
