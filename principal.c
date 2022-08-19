@@ -9,17 +9,18 @@ int main(){
     scanf("%d", &qtdTabuleiro);
     //main loop
     while (contador < qtdTabuleiro){
+        contador++;
         jogo = alocaTabuleiro();
         entrada(jogo);
         //Checa se o jogo é válido
         check = validar(jogo, jogadores);
         if(check == 1){
-            printf("Tabuleiro %d invalido\n", contador+1);
-            return 0;
+            printf("Tabuleiro %d invalido\n", contador);
+            continue;
         }
         //função que analisa e da o resultado
-        analisar(jogo, contador, jogadores); 
-        contador++;
+        analisar(jogo, contador, jogadores);
+        
         liberaMemoria(&jogo);
     }
     return 0;

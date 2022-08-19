@@ -114,18 +114,24 @@ void analisar(char **jogo, int contador, Jogadas *jogadas){
     switch (vit)
     {
     case 1:
-        printf("Tabuleiro %d com vitoria [X]\n", contador + 1);
+        printf("Tabuleiro %d com vitoria [X]\n", contador);
         break;
     case 2:
-        printf("Tabuleiro %d com vitoria [O]\n", contador + 1);
+        printf("Tabuleiro %d com vitoria [O]\n", contador);
         break;
     case 3:
-        printf("Tabuleiro %d deu velha\n", contador + 1);
+        printf("Tabuleiro %d deu velha\n", contador);
         break;
     case 0:
         //para jogador indefinido x = o
         if (jogadas->quantX == jogadas->quantO){
-            printf("Tabuleiro %d em andamento [proximo jogador indefinido]\n", contador + 1);
+            printf("Tabuleiro %d em andamento [proximo jogador indefinido]\n", contador);
+        }
+        if (jogadas->quantX < jogadas->quantO){
+            printf("Tabuleiro %d em andamento [proximo jogador [X]]\n", contador);
+        }
+        if (jogadas->quantX > jogadas->quantO){
+            printf("Tabuleiro %d em andamento [proximo jogador [O]]\n", contador);
         }
         //fazer uma função para jogada mestre
         break;
