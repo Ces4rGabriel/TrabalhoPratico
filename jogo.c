@@ -2,6 +2,11 @@
 #include <stdlib.h>
 #include "jogo.h" 
 
+struct jogadas{
+    int quantX;
+    int quantO;
+};
+
 char **alocaTabuleiro(){
     char **Tabuleiro;
     Tabuleiro = (char **) malloc(3 * sizeof(char *));
@@ -92,4 +97,28 @@ int vitoria(char **jogo){
     }
     //game over - o jogo não acabou
     return 3;
+}
+
+int analisar(char **jogo, int contador){
+    int vit = vitoria(jogo);
+    switch (vit)
+    {
+    case 1:
+        printf("Tabuleiro %d com vitoria [X]", contador);
+        return 1;
+        break;
+    case 2:
+        printf("Tabuleiro %d com vitoria [O]", contador);
+        return 1;
+        break;
+    case 3:
+        printf("Tabuleiro %d deu velha", contador);
+        return 0;
+        break;
+    case 0:
+        printf("Tabuleiro %d em andamento", contador);
+        return -1;
+        break;
+    }
+    return -2;
 }

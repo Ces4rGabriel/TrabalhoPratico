@@ -2,8 +2,8 @@
 #include "jogo.h"
 
 int main(){
-    int qtdTabuleiro,vit, check, contador = 0;
-    //int v;
+    int qtdTabuleiro, resultado, check, contador = 0;
+    Jogadas *jogadores;
     char **jogo;
     //numero de tabuleiros a ser analisado
     scanf("%d", &qtdTabuleiro);
@@ -16,14 +16,11 @@ int main(){
         if(check == 1)
             return 0;
         //função que o resultado
-        vit = vitoria(jogo);
+        resultado = analisar(jogo, contador);
         //função que recebe jogo, v, contador, quantX e quantO e imprime o resultado   
         contador++;
         liberaMemoria(&jogo);
     }
-   //imprimir(jogo);
-    //v = vitoria(jogo);
-    printf("%d\n", vit);
     return 0;
 }
 
