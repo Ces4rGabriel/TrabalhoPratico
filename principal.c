@@ -2,22 +2,23 @@
 #include "jogo.h"
 
 int main(){
-    int qtdTabuleiro, resultado, check, contador = 0;
+    int qtdTabuleiro, check, contador = 0;
     Jogadas *jogadores;
     char **jogo;
     //numero de tabuleiros a ser analisado
     scanf("%d", &qtdTabuleiro);
     //main loop
     while (contador < qtdTabuleiro){
-       jogo = alocaTabuleiro();
+        jogo = alocaTabuleiro();
         entrada(jogo);
-        check = validar(jogo);
-
-        if(check == 1)
+        //Checa se o jogo é válido
+        check = validar(jogo, jogadores);
+        if(check == 1){
+            printf("Tabuleiro %d invalido\n", contador+1);
             return 0;
-        //função que o resultado
-        resultado = analisar(jogo, contador);
-        //função que recebe jogo, v, contador, quantX e quantO e imprime o resultado   
+        }
+        //função que analisa e da o resultado
+        analisar(jogo, contador, jogadores); 
         contador++;
         liberaMemoria(&jogo);
     }

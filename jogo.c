@@ -5,7 +5,14 @@
 struct jogadas{
     int quantX;
     int quantO;
+    int diferenca;
 };
+//criei essa função mas nem sei se precisa
+Jogadas* alocaJogadas() {
+    // Seu código aqui
+    Jogadas *j = malloc (sizeof(Jogadas));
+    return j;
+}
 
 char **alocaTabuleiro(){
     char **Tabuleiro;
@@ -32,22 +39,25 @@ void entrada(char **jogo){
     }
 }
 
-int validar(char **jogo){
-    int QuantX, QuantO;
+int validar(char **jogo, Jogadas *jogadas){
+    jogadas->quantO = 0;
+    jogadas->quantX = 0;
 
     for(int i = 0; i < 3; i++) {
         for(int j = 0; j < 3; j++){
             if(jogo[i][j] == 'X')
-                QuantX++;
-
-            if(jogo[i][j] == 'O')
-                QuantO++;    
+                jogadas->quantX++;
+            else if(jogo[i][j] == 'O')
+                jogadas->quantO++;  
         }
     } 
-
-    printf("%d\n", QuantX - QuantO);
-
-    return 0;
+    //diferença de quantidade de X e O
+    jogadas->diferenca = abs(jogadas->quantX - jogadas->quantO);
+    //se a diferença for maior que 1, não é possível ganhar
+    if(jogadas->diferenca > 1)
+        return 1;
+    else
+        return 0;
 }
 
 int vitoria(char **jogo){
@@ -99,26 +109,25 @@ int vitoria(char **jogo){
     return 3;
 }
 
-int analisar(char **jogo, int contador){
+void analisar(char **jogo, int contador, Jogadas *jogadas){
     int vit = vitoria(jogo);
     switch (vit)
     {
     case 1:
-        printf("Tabuleiro %d com vitoria [X]", contador);
-        return 1;
+        printf("Tabuleiro %d com vitoria [X]\n", contador + 1);
         break;
     case 2:
-        printf("Tabuleiro %d com vitoria [O]", contador);
-        return 1;
+        printf("Tabuleiro %d com vitoria [O]\n", contador + 1);
         break;
     case 3:
-        printf("Tabuleiro %d deu velha", contador);
-        return 0;
+        printf("Tabuleiro %d deu velha\n", contador + 1);
         break;
     case 0:
-        printf("Tabuleiro %d em andamento", contador);
-        return -1;
+        //para jogador indefinido x = o
+        if (jogadas->quantX == jogadas->quantO){
+            printf("Tabuleiro %d em andamento [proximo jogador indefinido]\n", contador + 1);
+        }
+        //fazer uma função para jogada mestre
         break;
     }
-    return -2;
 }
