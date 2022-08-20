@@ -3,18 +3,18 @@
 
 typedef struct jogadas Jogadas;
 
-Jogadas* alocaJogadas();
+char *alocaTabuleiro();
 
-char **alocaTabuleiro();
+void entrada(char *jogo);
 
-void liberaMemoria(char ***jogo);
+int validarEntrada(char *j, Jogadas *);
 
-void entrada(char **jogo);
+char vitoria(char *);
 
-int validar(char **jogo, Jogadas*);
+void analisar(char *, int, Jogadas *);
 
-int vitoria (char **jogo);
+void mestre(char *, char);
 
-void analisar(char **jogo, int contador, Jogadas*);
+void imprimirmestre(int);
 
 #endif //jogo_da_velha_h

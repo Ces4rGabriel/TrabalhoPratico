@@ -1,42 +1,37 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "jogo.h"
 
 int main(){
-    int qtdTabuleiro, check, contador = 0;
-    Jogadas *jogadores;
-    char **jogo;
-    //numero de tabuleiros a ser analisado
+    char *jogo;
+    int qtdTabuleiro, tabuleiroVal, contador = 0;
+    //ENTRADA DO NUMERO DE TABULEIROS
     scanf("%d ", &qtdTabuleiro);
-    //main loop
+    //MAIN LOOP
     while (contador < qtdTabuleiro){
-        contador++;
+        contador++; //INCREMENTA O CONTADOR
+
+        //ALOCA STRUCT DE JOGADAS
+        Jogadas *jogadas = (Jogadas *) malloc(sizeof(Jogadas*));
+        //ALOCA TABULEIRO
         jogo = alocaTabuleiro();
+
+        //ENTRADA DO TABULEIRO
         entrada(jogo);
-        //Checa se o jogo é válido
-        check = validar(jogo, jogadores);
-        if(check == 1){
+
+        //VALIDAR ENTRADA
+        tabuleiroVal =  validarEntrada(jogo, jogadas);
+        if(tabuleiroVal == 1){
             printf("Tabuleiro %d invalido\n", contador);
             continue;
         }
-        //função que analisa e da o resultado
-        analisar(jogo, contador, jogadores);
-        liberaMemoria(&jogo);
-    }
+
+        //ANALISAR TABULEIRO
+        analisar(jogo, contador, jogadas);
+
+        //LIBERAR MEMORIA
+        free(jogo);
+        free(jogadas);
+    }   
     return 0;
 }
-
-/*
-[0][0] [0][1] [0][2]
-[1][0] [1][1] [1][2]
-[2][0] [2][1] [2][2]
-
-Maneiras de ganhar:
-1º primeira coluna
-2º segunda coluna
-3º terceira coluna
-4º Diagonal Principal
-5º Diagonal secundária
-6º primeira linha
-7º segunda linha
-8º terceira linha
-*/
