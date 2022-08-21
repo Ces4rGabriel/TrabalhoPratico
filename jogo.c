@@ -13,13 +13,13 @@ TADTabuleiro* alocaTADTabuleiro() {
     return Tabuleiro;
 }
 
-char **alocaTabuleiro(){
-    char **Tabuleiro;
-    Tabuleiro = (char **) malloc(3 * sizeof(char *));
+void alocaTabuleiro(TADTabuleiro **Tabuleiro){
+    //char **Tabuleiro;
+    (*Tabuleiro)->TabuleiroJogo = (char **) malloc(3 * sizeof(char *));
     for (int i = 0; i < 3; i++)
-        Tabuleiro[i] = (char *) malloc(3 * sizeof(char));
+        (*Tabuleiro)->TabuleiroJogo[i] = (char *) malloc(3 * sizeof(char));
 
-    return Tabuleiro;
+    //return Tabuleiro;
 }
 
 void liberaMemoria(char ***jogo){
@@ -41,6 +41,7 @@ void entrada(char **jogo){
 int validar(char **jogo, TADTabuleiro *Tabuleiro){
     Tabuleiro->quantO = 0;
     Tabuleiro->quantX = 0;
+    int diferenca;
 
     for(int i = 0; i < 3; i++) {
         for(int j = 0; j < 3; j++){
@@ -51,9 +52,9 @@ int validar(char **jogo, TADTabuleiro *Tabuleiro){
         }
     } 
     //diferença de quantidade de X e O
-    Tabuleiro->diferenca = abs( Tabuleiro->quantX - Tabuleiro->quantO );
+    diferenca = abs( Tabuleiro->quantX - Tabuleiro->quantO );
     //se a diferença for maior que 1, não é possível ganhar
-    if( Tabuleiro->diferenca > 1 )
+    if( diferenca > 1 )
         return 1;
     else
         return 0;

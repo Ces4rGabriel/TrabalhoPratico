@@ -11,17 +11,18 @@ int main(){
     while (contador < qtdTabuleiro){
         TADTabuleiro *tab = malloc (sizeof(TADTabuleiro));
         contador++;
-        jogo = alocaVetor();
+        Mjogo = alocaVetor();
+        alocaTabuleiro(&tab);
         entrada(jogo);
         
         //Checa se o jogo é válido
-        check = validar(Jogo, Tabuleiro);
+        check = validar(Mjogo, tab);
         if(check == 1){
             printf("Tabuleiro %d invalido\n", contador);
             continue;
         }
         //função que analisa e da o resultado
-        analisar(jogo, contador, jogadores);
+        //analisar(MJogo, contador, jogadores);
         
         liberaMemoria(&jogo);
     }
