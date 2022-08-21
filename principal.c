@@ -4,7 +4,6 @@
 
 int main(){
     int qtdTabuleiro, contador = 0, check;
-    char valor;
     char jogo[9];
     TADTabuleiro *tab;
     //numero de tabuleiros a ser analisado
@@ -15,7 +14,6 @@ int main(){
         contador++;
         alocaTabuleiro(&tab);
         entrada(jogo, &tab);
-        mostraJogo(tab);
         check = validar(tab);
         if(check == 1){
             printf("jogo %d invalido\n", contador);

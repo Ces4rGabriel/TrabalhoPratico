@@ -41,18 +41,6 @@ void entrada(char jogo[9], TADTabuleiro **tab){
     }
 }
 
-void mostraJogo(TADTabuleiro* tab){
-    for (int i = 0; i < 3; i++)
-    {   
-        for (int j = 0; j < 3; j++)
-        {
-            printf("%c", tab->TabuleiroJogo[i][j]);
-        }
-        printf("\n");
-    }
-    
-}
-
 int validar(TADTabuleiro *Tabuleiro){
     Tabuleiro->quantO = 0;
     Tabuleiro->quantX = 0;
@@ -211,8 +199,6 @@ void analisar(char jogo[9], int contador, TADTabuleiro *Tab){
             printf("]\n");
         }
         else if (Tab->quantX > Tab->quantO){
-            mestre(jogo, 'O');
-            mostraJogo(Tab);
             printf("Tabuleiro %d em andamento [O: ", contador);
             mestre(jogo, 'O');
             printf("]\n");

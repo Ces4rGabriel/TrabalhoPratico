@@ -15,8 +15,6 @@ int validar(TADTabuleiro*);
 
 char vitoria(TADTabuleiro*);
 
-void mostraJogo(TADTabuleiro*);
-
 char vitoriaM(char jogo[9]);
 
 int mestre(char jogo[9], char jogador);
