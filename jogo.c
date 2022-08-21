@@ -8,10 +8,9 @@ struct tabuleiro{
     int quantO;
 };
 //criei essa função mas nem sei se precisa
-/*TADTabuleiro* alocaTADTabuleiro() {
-    TADTabuleiro * Tabuleiro = malloc (sizeof(TADTabuleiro));
-    return Tabuleiro;
-}*/
+void alocaTADTabuleiro(TADTabuleiro **tab) {
+    *tab = malloc (sizeof(TADTabuleiro));
+}
 
 void alocaTabuleiro(TADTabuleiro **Tabuleiro){
     //char **Tabuleiro;
@@ -104,7 +103,7 @@ char vitoria(char **jogo){
     return 'V';
 }
 
-char vitoriaM(char *jogo){
+/*char vitoriaM(char *jogo){
     int vitorias[8][3] = {{0,1,2},{3,4,5},{6,7,8},{0,3,6},{1,4,7},{2,5,8},{0,4,8},{2,4,6}};
     int cv = 0;
     char aux;
@@ -198,3 +197,4 @@ void imprimirmestre(int i){
         break;
     }
 }
+*/

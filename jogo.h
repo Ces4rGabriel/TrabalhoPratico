@@ -3,18 +3,20 @@
 
 typedef struct tabuleiro TADTabuleiro;
 
-void alocaTabuleiro(TADTabuleiro **);
+void alocaTadTabuleiro(TADTabuleiro**);
 
-void liberaMemoria(TADTabuleiro **);
+void alocaTabuleiro(TADTabuleiro**);
 
-void entradaTabuleiro(TADTabuleiro **);
+void liberaMemoria(TADTabuleiro**);
+
+void entradaTabuleiro(TADTabuleiro**);
 
 int validar(char **jogo, TADTabuleiro*);
 
 char vitoria(char **jogo);
 
-char vitoriaM(char *);
+//char vitoriaM(char *);
 
-void analisar(char **jogo, int contador, TADTabuleiro*);
+//void analisar(char **jogo, int contador, TADTabuleiro*);
 
 #endif //jogo_da_velha_h

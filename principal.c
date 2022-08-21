@@ -5,11 +5,12 @@ int main(){
     int qtdTabuleiro, check, contador = 0;
     char *jogo;
     char **Mjogo;
+    TADTabuleiro *tab;
     //numero de tabuleiros a ser analisado
     scanf("%d", &qtdTabuleiro);
     //main loop
     while (contador < qtdTabuleiro){
-        TADTabuleiro *tab = malloc (sizeof(TADTabuleiro));
+        alocaTADTabuleiro(&tab);
         contador++;
         Mjogo = alocaVetor();
         alocaTabuleiro(&tab);
