@@ -2,17 +2,17 @@
 #include <stdlib.h>
 #include "jogo.h" 
 
-struct tabueleiro{
-    char *Tabuleiro;
+struct tabuleiro{
+    char **Tabuleiro;
     int quantX;
     int quantO;
     int diferenca;
 };
 //criei essa função mas nem sei se precisa
-tabuleiro* alocaJogadas() {
+TADTabuleiro* alocaJogadas() {
     // Seu código aqui
-    tabueleiro *j = malloc (sizeof(tabuleiro));
-    return j;
+    TADTabuleiro * jogadas = malloc (sizeof(TADTabuleiro));
+    return jogadas;
 }
 
 char **alocaTabuleiro(){
@@ -40,22 +40,22 @@ void entrada(char **jogo){
     }
 }
 
-int validar(char **jogo, tabuleiro *jogadas){
-    jogadas->quantO = 0;
-    jogadas->quantX = 0;
+int validar(char **jogo, TADTabuleiro *Tabuleiro){
+    Tabuleiro->quantO = 0;
+    Tabuleiro->quantX = 0;
 
     for(int i = 0; i < 3; i++) {
         for(int j = 0; j < 3; j++){
             if(jogo[i][j] == 'X')
-                jogadas->quantX++;
+                Tabuleiro->quantX++;
             else if(jogo[i][j] == 'O')
-                jogadas->quantO++;  
+                Tabuleiro->quantO++;  
         }
     } 
     //diferença de quantidade de X e O
-    jogadas->diferenca = abs(jogadas->quantX - jogadas->quantO);
+    Tabuleiro->diferenca = abs( Tabuleiro->quantX - Tabuleiro->quantO );
     //se a diferença for maior que 1, não é possível ganhar
-    if(jogadas->diferenca > 1)
+    if( Tabuleiro->diferenca > 1 )
         return 1;
     else
         return 0;
@@ -110,7 +110,7 @@ char vitoria(char **jogo){
     return 'V';
 }
 
-void analisar(char **jogo, int contador, tabuleiro *jogadas){
+void analisar(char **jogo, int contador, TADTabuleiro *jogadas){
     int vit = vitoria(jogo);
     switch (vit)
     {

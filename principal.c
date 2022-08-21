@@ -3,7 +3,7 @@
 
 int main(){
     int qtdTabuleiro, check, contador = 0;
-    Jogadas *jogadores;
+    TADTabuleiro *jogadores;
     char **jogo;
     //numero de tabuleiros a ser analisado
     scanf("%d", &qtdTabuleiro);

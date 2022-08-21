@@ -11,10 +11,10 @@ void liberaMemoria(char ***jogo);
 
 void entrada(char **jogo);
 
-int validar(char **jogo, tabueleiro*);
+int validar(char **jogo, TADTabuleiro*);
 
 char vitoria(char **jogo);
 
-void analisar(char **jogo, int contador, tabuleiro*);
+void analisar(char **jogo, int contador, TADTabuleiro*);
 
 #endif //jogo_da_velha_h
