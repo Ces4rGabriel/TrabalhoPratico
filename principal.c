@@ -16,7 +16,7 @@ int main(){
         entrada(jogo, &tab);
         check = validar(tab);
         if(check == 1){
-            printf("jogo %d invalido\n", contador);
+            printf("Tabuleiro %d invalido\n", contador);
         }else{
            //valor = vitoria(tab);
            //printf("Tabuleiro %d ganhador: %c\n",contador, valor); 
