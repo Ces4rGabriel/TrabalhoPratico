@@ -3,7 +3,8 @@
 #include "jogo.h"
 
 int main(){
-    int qtdTabuleiro, contador = 0;
+    int qtdTabuleiro, contador = 0, check;
+    char valor;
     char jogo[9];
     TADTabuleiro *tab;
     //numero de tabuleiros a ser analisado
@@ -14,19 +15,15 @@ int main(){
         contador++;
         alocaTabuleiro(&tab);
         entrada(jogo, &tab);
-        
         mostraJogo(tab);
-        
-        //Checa se o jogo é válido
-        //check = validar(Mjogo, tab);
-        //if(check == 1){
-        //    printf("Tabuleiro %d invalido\n", contador);
-        //    continue;
-       // }
-        //função que analisa e da o resultado
-        //analisar(MJogo, contador, jogadores);
-        //free(jogo);
-        //liberaMemoria(&jogo);
+        check = validar(tab);
+        if(check == 1){
+            printf("jogo %d invalido\n", contador);
+        }else{
+           //valor = vitoria(tab);
+           //printf("Tabuleiro %d ganhador: %c\n",contador, valor); 
+           analisar(contador, tab);
+        }
     }
     return 0;
 }

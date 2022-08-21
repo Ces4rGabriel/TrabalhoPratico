@@ -11,14 +11,14 @@ void liberaMemoria(TADTabuleiro**);
 
 void entrada(char jogo[9], TADTabuleiro**);
 
-int validar(char **jogo, TADTabuleiro*);
+int validar(TADTabuleiro*);
 
-char vitoria(char **jogo);
+char vitoria(TADTabuleiro*);
 
 void mostraJogo(TADTabuleiro*);
 
 //char vitoriaM(char *);
 
-//void analisar(char **jogo, int contador, TADTabuleiro*);
+void analisar(int contador, TADTabuleiro*);
 
 #endif //jogo_da_velha_h

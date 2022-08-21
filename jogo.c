@@ -53,16 +53,16 @@ void mostraJogo(TADTabuleiro* tab){
     
 }
 
-int validar(char **jogo, TADTabuleiro *Tabuleiro){
+int validar(TADTabuleiro *Tabuleiro){
     Tabuleiro->quantO = 0;
     Tabuleiro->quantX = 0;
     int diferenca;
 
     for(int i = 0; i < 3; i++) {
         for(int j = 0; j < 3; j++){
-            if(jogo[i][j] == 'X')
+            if(Tabuleiro->TabuleiroJogo[i][j] == 'X')
                 Tabuleiro->quantX++;
-            else if(jogo[i][j] == 'O')
+            else if(Tabuleiro->TabuleiroJogo[i][j] == 'O')
                 Tabuleiro->quantO++;  
         }
     } 
@@ -75,10 +75,10 @@ int validar(char **jogo, TADTabuleiro *Tabuleiro){
         return 0;
 }
 
-char vitoria(char **jogo){
+char vitoria(TADTabuleiro *tab){
     for (int i = 0; i < 3; i++){
-        if (jogo[i][0] == jogo[i][1] && jogo[i][1] == jogo[i][2] && jogo[i][0] != 'V'){
-            if (jogo[i][0] == 'X')
+        if (tab->TabuleiroJogo[i][0] == tab->TabuleiroJogo[i][1] && tab->TabuleiroJogo[i][1] == tab->TabuleiroJogo[i][2] && tab->TabuleiroJogo[i][0] != 'V'){
+            if (tab->TabuleiroJogo[i][0] == 'X')
                 return 'X';
             else
                 return 'O';
@@ -86,23 +86,23 @@ char vitoria(char **jogo){
     }
     //Game over - col
     for (int j = 0; j < 3; j++){
-        if (jogo[0][j] == jogo[1][j] && jogo[1][j] == jogo[2][j] && jogo[0][j] != 'V'){
-            if (jogo[0][j] == 'X')
+        if (tab->TabuleiroJogo[0][j] == tab->TabuleiroJogo[1][j] && tab->TabuleiroJogo[1][j] == tab->TabuleiroJogo[2][j] && tab->TabuleiroJogo[0][j] != 'V'){
+            if (tab->TabuleiroJogo[0][j] == 'X')
                 return 'X';
             else
                 return 'O';
         }
     }
     //game over - diagonal
-    if (jogo[0][0] == jogo[1][1] && jogo[1][1] == jogo[2][2] && jogo[0][0] != 'V'){
-        if (jogo[0][0] == 'X')
+    if (tab->TabuleiroJogo[0][0] == tab->TabuleiroJogo[1][1] && tab->TabuleiroJogo[1][1] == tab->TabuleiroJogo[2][2] && tab->TabuleiroJogo[0][0] != 'V'){
+        if (tab->TabuleiroJogo[0][0] == 'X')
             return 'X';
         else
             return 'O';
     }
     //game over - diagonal secundária
-    if(jogo[0][2] == jogo[1][1] && jogo[1][1] == jogo[2][0] && jogo[3][0] != 'V'){
-        if(jogo[0][2] == 'X')
+    if(tab->TabuleiroJogo[0][2] == tab->TabuleiroJogo[1][1] && tab->TabuleiroJogo[1][1] == tab->TabuleiroJogo[2][0] && tab->TabuleiroJogo[3][0] != 'V'){
+        if(tab->TabuleiroJogo[0][2] == 'X')
             return 'X';
         else
             return 'O';
@@ -110,15 +110,15 @@ char vitoria(char **jogo){
     //game over - empate
     for(int i = 0; i < 3; i++){
         for(int j = 0; j < 3; j++){
-            if(jogo[i][j] == 'V')
+            if(tab->TabuleiroJogo[i][j] == 'V')
                 return 'E';
         }
     }
     //game over - o jogo não acabou
     return 'V';
 }
-
-/*char vitoriaM(char *jogo){
+/*
+char vitoriaM(char *jogo){
     int vitorias[8][3] = {{0,1,2},{3,4,5},{6,7,8},{0,3,6},{1,4,7},{2,5,8},{0,4,8},{2,4,6}};
     int cv = 0;
     char aux;
@@ -130,8 +130,9 @@ char vitoria(char **jogo){
     }
 }
 
-void analisar(char *jogo, int contador, Jogadas *jogadas){
-    char vit = vitoria(jogo);
+*/
+void analisar(int contador, TADTabuleiro *Tab){
+    char vit = vitoria(Tab);
     switch (vit)
     {
     case 'X':
@@ -148,22 +149,23 @@ void analisar(char *jogo, int contador, Jogadas *jogadas){
         break;
     case 'E':
         //para jogador indefinido x = o
-        if (jogadas->quantX == jogadas->quantO){
+        if (Tab->quantX == Tab->quantO){
             printf("Tabuleiro %d em andamento [proximo jogador indefinido]\n", contador);
         }
-        else if (jogadas->quantX < jogadas->quantO){
+        else if (Tab->quantX < Tab->quantO){
             printf("Tabuleiro %d em andamento [X: ", contador);
-            mestre(jogo, 'X');
+            //mestre(Tab->TabuleiroJogo, 'X');
             printf("]\n");
         }
-        else if (jogadas->quantX > jogadas->quantO){
+        else if (Tab->quantX > Tab->quantO){
             printf("Tabuleiro %d em andamento [O: ", contador);
-            mestre(jogo, 'O');
+            //mestre(Tab->TabuleiroJogo, 'O');
             printf("]\n");
         }
         break;
     }    
 }
+/*
 //detectar jogada mestre
 void mestre(char *jogo, char jogador){
     int jm = 0;
