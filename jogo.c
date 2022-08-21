@@ -28,11 +28,13 @@ void liberaMemoria(TADTabuleiro **Tabuleiro){
 }
 
 
-void entrada(char **jogo){
-    getchar();
+void entrada(char *jogo, TADTabuleiro **tab){
+    //Lendo o Vetor com Jogadas
+    scanf("%s", jogo);
+    //Transpondo Vetor Para Matriz
     for(int i = 0; i < 3; i++){
         for(int j = 0; j < 3; j++){
-            scanf("%c", &jogo[i][j]);
+            (*tab)->TabuleiroJogo[i][j] = jogo[i*3 + j];
         }
     }
 }

@@ -7,7 +7,7 @@ void alocaTabuleiro(TADTabuleiro **);
 
 void liberaMemoria(TADTabuleiro **);
 
-void entrada(char **jogo);
+void entradaTabuleiro(TADTabuleiro **);
 
 int validar(char **jogo, TADTabuleiro*);
 
