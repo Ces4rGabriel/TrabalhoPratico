@@ -13,6 +13,7 @@ int main(){
 
         //ALOCA STRUCT DE JOGADAS
         Jogadas *jogadas = (Jogadas *) malloc(sizeof(Jogadas*));
+        
         //ALOCA TABULEIRO
         jogo = alocaTabuleiro();
 
@@ -20,15 +21,14 @@ int main(){
         entrada(jogo);
 
         //VALIDAR ENTRADA
+        tabuleiroVal = 0;
         tabuleiroVal =  validarEntrada(jogo, jogadas);
         if(tabuleiroVal == 1){
             printf("Tabuleiro %d invalido\n", contador);
-            continue;
+        }else{
+            //ANALISAR O TABULEIRO E DA A RESPOSTA
+            analisar(jogo, contador, jogadas);
         }
-
-        //ANALISAR TABULEIRO
-        analisar(jogo, contador, jogadas);
-
         //LIBERAR MEMORIA
         free(jogo);
         free(jogadas);

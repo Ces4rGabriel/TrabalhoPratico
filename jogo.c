@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "jogo.h" 
-
+#include <string.h>
 struct jogadas{
     int quantX;
     int quantO;
@@ -14,15 +14,13 @@ char *alocaTabuleiro(){
 }
 
 void entrada(char *jogo){
-    for(int i = 0; i < 9; i++){
-        scanf("%c", &jogo[i]);
-    }
-    scanf(" ");
+    scanf("%s",jogo);
 }
 int validarEntrada(char *jogo, Jogadas *jog){
     jog->quantX = 0;
     jog->quantO = 0;
     int diferenca;
+
     for(int i = 0; i < 9; i++){
         if(jogo[i] == 'X')
             jog->quantX++;
@@ -36,15 +34,25 @@ int validarEntrada(char *jogo, Jogadas *jog){
         return 0;
 }
 
-
 char vitoria(char *jogo){
     int vitorias[8][3] = {{0,1,2},{3,4,5},{6,7,8},{0,3,6},{1,4,7},{2,5,8},{0,4,8},{2,4,6}};
+    int cv = 0;
+    char aux;
     //verificar vitoria
     for (int i = 0; i < 8; i++){
-        if(jogo[vitorias[i][0]] != 'V' && jogo[vitorias[i][0]] == jogo[vitorias[i][1]] && jogo[vitorias[i][0]] == jogo[vitorias[i][2]])
-            return jogo[vitorias[i][2]];
+        if(jogo[vitorias[i][0]] != 'V' && jogo[vitorias[i][0]] == jogo[vitorias[i][1]] && jogo[vitorias[i][0]] == jogo[vitorias[i][2]]){
+            aux = jogo[vitorias[i][2]];
+            cv++;
+        }
     }
-    //Verificar empate
+    //verificar mais de um trinca
+    if(cv == 1){
+        return aux;
+    }
+    else if(cv > 1){
+        return 'M';
+    }
+    //Verificar casas vazias
     for(int i = 0; i < 9; i++){
         if(jogo[i] == 'V')
             return 'E';
@@ -65,22 +73,24 @@ void analisar(char *jogo, int contador, Jogadas *jogadas){
     case 'V':
         printf("Tabuleiro %d deu velha\n", contador);
         break;
+    case 'M':
+        printf("Tabuleiro %d invalido", contador);
+        break;
     case 'E':
         //para jogador indefinido x = o
         if (jogadas->quantX == jogadas->quantO){
             printf("Tabuleiro %d em andamento [proximo jogador indefinido]\n", contador);
         }
-        if (jogadas->quantX < jogadas->quantO){
+        else if (jogadas->quantX < jogadas->quantO){
             printf("Tabuleiro %d em andamento [X: ", contador);
             mestre(jogo, 'X');
             printf("]\n");
         }
-        if (jogadas->quantX > jogadas->quantO){
+        else if (jogadas->quantX > jogadas->quantO){
             printf("Tabuleiro %d em andamento [O: ", contador);
             mestre(jogo, 'O');
             printf("]\n");
         }
-        //fazer uma função para jogada mestre
         break;
     }    
 }
