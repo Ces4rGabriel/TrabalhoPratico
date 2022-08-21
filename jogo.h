@@ -9,11 +9,13 @@ void alocaTabuleiro(TADTabuleiro**);
 
 void liberaMemoria(TADTabuleiro**);
 
-void entradaTabuleiro(TADTabuleiro**);
+void entrada(char jogo[9], TADTabuleiro**);
 
 int validar(char **jogo, TADTabuleiro*);
 
 char vitoria(char **jogo);
+
+void mostraJogo(TADTabuleiro*);
 
 //char vitoriaM(char *);
 

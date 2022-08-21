@@ -1,31 +1,32 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "jogo.h"
 
 int main(){
-    int qtdTabuleiro, check, contador = 0;
-    char *jogo;
-    char **Mjogo;
+    int qtdTabuleiro, contador = 0;
+    char jogo[9];
     TADTabuleiro *tab;
     //numero de tabuleiros a ser analisado
     scanf("%d", &qtdTabuleiro);
     //main loop
     while (contador < qtdTabuleiro){
-        alocaTADTabuleiro(&tab);
+        alocaTadTabuleiro(&tab);
         contador++;
-        Mjogo = alocaVetor();
         alocaTabuleiro(&tab);
-        entrada(jogo);
+        entrada(jogo, &tab);
+        
+        mostraJogo(tab);
         
         //Checa se o jogo é válido
-        check = validar(Mjogo, tab);
-        if(check == 1){
-            printf("Tabuleiro %d invalido\n", contador);
-            continue;
-        }
+        //check = validar(Mjogo, tab);
+        //if(check == 1){
+        //    printf("Tabuleiro %d invalido\n", contador);
+        //    continue;
+       // }
         //função que analisa e da o resultado
         //analisar(MJogo, contador, jogadores);
-        
-        liberaMemoria(&jogo);
+        //free(jogo);
+        //liberaMemoria(&jogo);
     }
     return 0;
 }

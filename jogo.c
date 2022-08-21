@@ -8,9 +8,10 @@ struct tabuleiro{
     int quantO;
 };
 //criei essa função mas nem sei se precisa
-void alocaTADTabuleiro(TADTabuleiro **tab) {
+void alocaTadTabuleiro(TADTabuleiro **tab){
     *tab = malloc (sizeof(TADTabuleiro));
 }
+
 
 void alocaTabuleiro(TADTabuleiro **Tabuleiro){
     //char **Tabuleiro;
@@ -24,10 +25,12 @@ void liberaMemoria(TADTabuleiro **Tabuleiro){
     for (int i = 0; i < 3; i++)
         free(((*Tabuleiro)->TabuleiroJogo)[i]);
     free((*Tabuleiro)->TabuleiroJogo);
+
+    free(*Tabuleiro);
 }
 
 
-void entrada(char *jogo, TADTabuleiro **tab){
+void entrada(char jogo[9], TADTabuleiro **tab){
     //Lendo o Vetor com Jogadas
     scanf("%s", jogo);
     //Transpondo Vetor Para Matriz
@@ -36,6 +39,18 @@ void entrada(char *jogo, TADTabuleiro **tab){
             (*tab)->TabuleiroJogo[i][j] = jogo[i*3 + j];
         }
     }
+}
+
+void mostraJogo(TADTabuleiro* tab){
+    for (int i = 0; i < 3; i++)
+    {   
+        for (int j = 0; j < 3; j++)
+        {
+            printf("%c", tab->TabuleiroJogo[i][j]);
+        }
+        printf("\n");
+    }
+    
 }
 
 int validar(char **jogo, TADTabuleiro *Tabuleiro){
