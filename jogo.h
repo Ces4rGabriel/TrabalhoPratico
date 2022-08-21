@@ -17,8 +17,10 @@ char vitoria(TADTabuleiro*);
 
 void mostraJogo(TADTabuleiro*);
 
-//char vitoriaM(char *);
+char vitoriaM(char jogo[9]);
 
-void analisar(int contador, TADTabuleiro*);
+int mestre(char jogo[9], char jogador);
+
+void analisar(char jogo[9],int contador, TADTabuleiro*);
 
 #endif //jogo_da_velha_h

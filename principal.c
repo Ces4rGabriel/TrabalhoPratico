@@ -22,7 +22,7 @@ int main(){
         }else{
            //valor = vitoria(tab);
            //printf("Tabuleiro %d ganhador: %c\n",contador, valor); 
-           analisar(contador, tab);
+           analisar(jogo, contador, tab);
         }
     }
     return 0;
