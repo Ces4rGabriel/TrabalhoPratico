@@ -2,15 +2,16 @@
 #include <stdlib.h>
 #include "jogo.h" 
 
-struct jogadas{
+struct tabueleiro{
+    char *Tabuleiro;
     int quantX;
     int quantO;
     int diferenca;
 };
 //criei essa função mas nem sei se precisa
-Jogadas* alocaJogadas() {
+tabuleiro* alocaJogadas() {
     // Seu código aqui
-    Jogadas *j = malloc (sizeof(Jogadas));
+    tabueleiro *j = malloc (sizeof(tabuleiro));
     return j;
 }
 
@@ -39,7 +40,7 @@ void entrada(char **jogo){
     }
 }
 
-int validar(char **jogo, Jogadas *jogadas){
+int validar(char **jogo, tabuleiro *jogadas){
     jogadas->quantO = 0;
     jogadas->quantX = 0;
 
@@ -109,7 +110,7 @@ char vitoria(char **jogo){
     return 'V';
 }
 
-void analisar(char **jogo, int contador, Jogadas *jogadas){
+void analisar(char **jogo, int contador, tabuleiro *jogadas){
     int vit = vitoria(jogo);
     switch (vit)
     {

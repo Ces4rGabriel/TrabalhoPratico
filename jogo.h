@@ -1,7 +1,7 @@
 # ifndef jogo_da_velha_h
 # define jogo_da_velha_h
 
-typedef struct jogadas Jogadas;
+typedef struct tabuleiro TADTabuleiro;
 
 Jogadas* alocaJogadas();
 
@@ -11,10 +11,10 @@ void liberaMemoria(char ***jogo);
 
 void entrada(char **jogo);
 
-int validar(char **jogo, Jogadas*);
+int validar(char **jogo, tabueleiro*);
 
-int vitoria (char **jogo);
+char vitoria(char **jogo);
 
-void analisar(char **jogo, int contador, Jogadas*);
+void analisar(char **jogo, int contador, tabuleiro*);
 
 #endif //jogo_da_velha_h
