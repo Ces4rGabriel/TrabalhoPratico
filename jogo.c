@@ -3,16 +3,14 @@
 #include "jogo.h" 
 
 struct tabuleiro{
-    char **Tabuleiro;
+    char **TabuleiroJogo;
     int quantX;
     int quantO;
-    int diferenca;
 };
 //criei essa função mas nem sei se precisa
-TADTabuleiro* alocaJogadas() {
-    // Seu código aqui
-    TADTabuleiro * jogadas = malloc (sizeof(TADTabuleiro));
-    return jogadas;
+TADTabuleiro* alocaTADTabuleiro() {
+    TADTabuleiro * Tabuleiro = malloc (sizeof(TADTabuleiro));
+    return Tabuleiro;
 }
 
 char **alocaTabuleiro(){

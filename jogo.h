@@ -3,7 +3,7 @@
 
 typedef struct tabuleiro TADTabuleiro;
 
-Jogadas* alocaJogadas();
+Jogadas* alocaTADTabuleiro();
 
 char **alocaTabuleiro();
 
