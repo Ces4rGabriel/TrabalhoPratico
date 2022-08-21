@@ -20,7 +20,7 @@ int validarEntrada(char *jogo, Jogadas *jog){
     jog->quantX = 0;
     jog->quantO = 0;
     int diferenca;
-
+    
     for(int i = 0; i < 9; i++){
         if(jogo[i] == 'X')
             jog->quantX++;
@@ -34,29 +34,48 @@ int validarEntrada(char *jogo, Jogadas *jog){
         return 0;
 }
 
-char vitoria(char *jogo){
-    int vitorias[8][3] = {{0,1,2},{3,4,5},{6,7,8},{0,3,6},{1,4,7},{2,5,8},{0,4,8},{2,4,6}};
-    int cv = 0;
-    char aux;
-    //verificar vitoria
-    for (int i = 0; i < 8; i++){
-        if(jogo[vitorias[i][0]] != 'V' && jogo[vitorias[i][0]] == jogo[vitorias[i][1]] && jogo[vitorias[i][0]] == jogo[vitorias[i][2]]){
-            aux = jogo[vitorias[i][2]];
-            cv++;
+
+
+char vitoria(char **jogo){
+    for (int i = 0; i < 3; i++){
+        if (jogo[i][0] == jogo[i][1] && jogo[i][1] == jogo[i][2] && jogo[i][0] != 'V'){
+            if (jogo[i][0] == 'X')
+                return 'X';
+            else
+                return 'O';
         }
     }
-    //verificar mais de um trinca
-    if(cv == 1){
-        return aux;
+    //Game over - col
+    for (int j = 0; j < 3; j++){
+        if (jogo[0][j] == jogo[1][j] && jogo[1][j] == jogo[2][j] && jogo[0][j] != 'V'){
+            if (jogo[0][j] == 'X')
+                return 'X';
+            else
+                return 'O';
+        }
     }
-    else if(cv > 1){
-        return 'M';
+    //game over - diagonal
+    if (jogo[0][0] == jogo[1][1] && jogo[1][1] == jogo[2][2] && jogo[0][0] != 'V'){
+        if (jogo[0][0] == 'X')
+            return 'X';
+        else
+            return 'O';
     }
-    //Verificar casas vazias
-    for(int i = 0; i < 9; i++){
-        if(jogo[i] == 'V')
-            return 'E';
+    //game over - diagonal secundária
+    if(jogo[0][2] == jogo[1][1] && jogo[1][1] == jogo[2][0] && jogo[3][0] != 'V'){
+        if(jogo[0][2] == 'X')
+            return 'X';
+        else
+            return 'O';
     }
+    //game over - empate
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
+            if(jogo[i][j] == 'V')
+                return 'E';
+        }
+    }
+    //game over - o jogo não acabou
     return 'V';
 }
 
@@ -94,13 +113,23 @@ void analisar(char *jogo, int contador, Jogadas *jogadas){
         break;
     }    
 }
+char vitoriaM(char *jogo){
+    int vitorias[8][3] = {{0,1,2},{3,4,5},{6,7,8},{0,3,6},{1,4,7},{2,5,8},{0,4,8},{2,4,6}};
+    //verificar vitoria
+    for (int i = 0; i < 8; i++){
+        if(jogo[vitorias[i][0]] != 'V' && jogo[vitorias[i][0]] == jogo[vitorias[i][1]] && jogo[vitorias[i][0]] == jogo[vitorias[i][2]]){
+            return jogo[vitorias[i][2]];
+        }
+    }
+}
+
 //detectar jogada mestre
 void mestre(char *jogo, char jogador){
     int jm = 0;
     for(int i = 8; i >= 0; i--){
         if(jogo[i] == 'V'){
             jogo[i] = jogador;
-            if (vitoria(jogo) == jogador){
+            if (vitoriaM(jogo) == jogador){
                 imprimirmestre(i);
                 jm++;
             }

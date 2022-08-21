@@ -9,10 +9,10 @@ void entrada(char *jogo);
 
 int validarEntrada(char *j, Jogadas *);
 
-char vitoria(char *);
+char vitoria(char **);
 
 void analisar(char *, int, Jogadas *);
-
+char vitoriaM(char *);
 void mestre(char *, char);
 
 void imprimirmestre(int);
