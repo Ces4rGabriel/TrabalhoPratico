@@ -41,7 +41,19 @@ void entrada(char jogo[9], TADTabuleiro **tab){
     }
 }
 
-int validar(TADTabuleiro *Tabuleiro){
+void mostraJogo(TADTabuleiro* tab){
+    for (int i = 0; i < 3; i++)
+    {   
+        for (int j = 0; j < 3; j++)
+        {
+            printf("%c", tab->TabuleiroJogo[i][j]);
+        }
+        printf("\n");
+    }
+    
+}
+
+int validar(TADTabuleiro *Tabuleiro, char *jogo){
     Tabuleiro->quantO = 0;
     Tabuleiro->quantX = 0;
     int diferenca;
@@ -63,60 +75,75 @@ int validar(TADTabuleiro *Tabuleiro){
         return 0;
 }
 
-char vitoria(TADTabuleiro *tab){
+int vitoria(TADTabuleiro *tab){
+    // 0 : invalido
+    // 1 : vitoria X
+    // 2 : vitoria O
+    // 3 : velha
+    // 4 : n acabou
+    int cx = 0;
+    int co = 0;
     for (int i = 0; i < 3; i++){
         if (tab->TabuleiroJogo[i][0] == tab->TabuleiroJogo[i][1] && tab->TabuleiroJogo[i][1] == tab->TabuleiroJogo[i][2] && tab->TabuleiroJogo[i][0] != 'V'){
             if (tab->TabuleiroJogo[i][0] == 'X')
-                return 'X';
+                cx++;
             else
-                return 'O';
+                co++;
         }
     }
     //Game over - col
     for (int j = 0; j < 3; j++){
         if (tab->TabuleiroJogo[0][j] == tab->TabuleiroJogo[1][j] && tab->TabuleiroJogo[1][j] == tab->TabuleiroJogo[2][j] && tab->TabuleiroJogo[0][j] != 'V'){
             if (tab->TabuleiroJogo[0][j] == 'X')
-                return 'X';
+                cx++;
             else
-                return 'O';
+                co++;
         }
     }
     //game over - diagonal
     if (tab->TabuleiroJogo[0][0] == tab->TabuleiroJogo[1][1] && tab->TabuleiroJogo[1][1] == tab->TabuleiroJogo[2][2] && tab->TabuleiroJogo[0][0] != 'V'){
         if (tab->TabuleiroJogo[0][0] == 'X')
-            return 'X';
+            cx++;
         else
-            return 'O';
+            co++;
     }
+
+
     //game over - diagonal secundária
     if(tab->TabuleiroJogo[0][2] == tab->TabuleiroJogo[1][1] && tab->TabuleiroJogo[1][1] == tab->TabuleiroJogo[2][0] && tab->TabuleiroJogo[3][0] != 'V'){
         if(tab->TabuleiroJogo[0][2] == 'X')
-            return 'X';
+            cx++;
         else
-            return 'O';
+            co++;
     }
+
+    if (cx > 0 && co > 0)
+        return 0;
+    else if(cx > 0)
+        return 1;
+    else if(co > 0)
+        return 2;
+
     //game over - empate
     for(int i = 0; i < 3; i++){
         for(int j = 0; j < 3; j++){
             if(tab->TabuleiroJogo[i][j] == 'V')
-                return 'E';
+                return 4;
         }
     }
     //game over - o jogo não acabou
-    return 'V';
+    return 3;
 }
 
 char vitoriaM(char jogo[9]){
     int vitorias[8][3] = {{0,1,2},{3,4,5},{6,7,8},{0,3,6},{1,4,7},{2,5,8},{0,4,8},{2,4,6}};
-
     //verificar vitoria
     for (int i = 0; i < 8; i++){
         if(jogo[vitorias[i][0]] != 'V' && jogo[vitorias[i][0]] == jogo[vitorias[i][1]] && jogo[vitorias[i][0]] == jogo[vitorias[i][2]]){
             return jogo[vitorias[i][2]];
         }
     }
-
-    return 'K';
+    return 0;
 }
 
 void imprimirmestre(int i){
@@ -173,22 +200,27 @@ int mestre(char jogo[9], char jogador){
 }
 
 void analisar(char jogo[9], int contador, TADTabuleiro *Tab){
-    char vit = vitoria(Tab);
+    int vit = vitoria(Tab);
+    // 0 : invalido
+    // 1 : vitoria X
+    // 2 : vitoria O
+    // 3 : velha
+    // 4 : n acabou
     switch (vit)
     {
-    case 'X':
+    case 1:
         printf("Tabuleiro %d com vitoria [X]\n", contador);
         break;
-    case 'O':
+    case 2:
         printf("Tabuleiro %d com vitoria [O]\n", contador);
         break;
-    case 'V':
+    case 3:
         printf("Tabuleiro %d deu velha\n", contador);
         break;
-    case 'M':
+    case 0:
         printf("Tabuleiro %d invalido", contador);
         break;
-    case 'E':
+    case 4:
         //para jogador indefinido x = o
         if (Tab->quantX == Tab->quantO){
             printf("Tabuleiro %d em andamento [proximo jogador indefinido]\n", contador);

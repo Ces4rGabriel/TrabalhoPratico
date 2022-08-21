@@ -5,15 +5,19 @@ typedef struct tabuleiro TADTabuleiro;
 
 void alocaTadTabuleiro(TADTabuleiro**);
 
+char vitoriaC(char *jogo);
+
 void alocaTabuleiro(TADTabuleiro**);
 
 void liberaMemoria(TADTabuleiro**);
 
 void entrada(char jogo[9], TADTabuleiro**);
 
-int validar(TADTabuleiro*);
+int validar(TADTabuleiro*, char*);
 
-char vitoria(TADTabuleiro*);
+int vitoria(TADTabuleiro*);
+
+void mostraJogo(TADTabuleiro*);
 
 char vitoriaM(char jogo[9]);
 

@@ -14,14 +14,16 @@ int main(){
         contador++;
         alocaTabuleiro(&tab);
         entrada(jogo, &tab);
-        check = validar(tab);
+        check = validar(tab, jogo);
         if(check == 1){
             printf("Tabuleiro %d invalido\n", contador);
-        }else{
+        }
+        else{
            //valor = vitoria(tab);
            //printf("Tabuleiro %d ganhador: %c\n",contador, valor); 
            analisar(jogo, contador, tab);
         }
+        liberaMemoria(&tab);
     }
     return 0;
 }
