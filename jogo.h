@@ -15,6 +15,8 @@ int validar(char **jogo, TADTabuleiro*);
 
 char vitoria(char **jogo);
 
+char vitoriaM(char *);
+
 void analisar(char **jogo, int contador, TADTabuleiro*);
 
 #endif //jogo_da_velha_h

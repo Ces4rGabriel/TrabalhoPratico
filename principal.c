@@ -3,16 +3,17 @@
 
 int main(){
     int qtdTabuleiro, check, contador = 0;
-    TADTabuleiro *Tabuleiro = malloc (sizeof(TADTabuleiro));
-    char **Jogo;
+    char *jogo;
+    char **Mjogo;
     //numero de tabuleiros a ser analisado
     scanf("%d", &qtdTabuleiro);
     //main loop
     while (contador < qtdTabuleiro){
+        TADTabuleiro *tab = malloc (sizeof(TADTabuleiro));
         contador++;
-        Jogo = alocaVetor();
+        jogo = alocaVetor();
+        entrada(jogo);
         
-        entrada(Jogo);
         //Checa se o jogo é válido
         check = validar(Jogo, Tabuleiro);
         if(check == 1){
