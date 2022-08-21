@@ -3,11 +3,9 @@
 
 typedef struct tabuleiro TADTabuleiro;
 
-Jogadas* alocaTADTabuleiro();
+void alocaTabuleiro(TADTabuleiro **);
 
-char **alocaTabuleiro();
-
-void liberaMemoria(char ***jogo);
+void liberaMemoria(TADTabuleiro **);
 
 void entrada(char **jogo);
 

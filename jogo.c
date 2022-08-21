@@ -8,24 +8,23 @@ struct tabuleiro{
     int quantO;
 };
 //criei essa função mas nem sei se precisa
-TADTabuleiro* alocaTADTabuleiro() {
+/*TADTabuleiro* alocaTADTabuleiro() {
     TADTabuleiro * Tabuleiro = malloc (sizeof(TADTabuleiro));
     return Tabuleiro;
-}
+}*/
 
 void alocaTabuleiro(TADTabuleiro **Tabuleiro){
     //char **Tabuleiro;
     (*Tabuleiro)->TabuleiroJogo = (char **) malloc(3 * sizeof(char *));
     for (int i = 0; i < 3; i++)
         (*Tabuleiro)->TabuleiroJogo[i] = (char *) malloc(3 * sizeof(char));
-
     //return Tabuleiro;
 }
 
-void liberaMemoria(char ***jogo){
+void liberaMemoria(TADTabuleiro **Tabuleiro){
     for (int i = 0; i < 3; i++)
-        free((*jogo)[i]);
-    free(*jogo);
+        free(((*Tabuleiro)->TabuleiroJogo)[i]);
+    free((*Tabuleiro)->TabuleiroJogo);
 }
 
 
