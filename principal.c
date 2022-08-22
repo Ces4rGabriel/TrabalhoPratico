@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "jogo.h"
+#define TAM 3
 
 int main(){
     int qtdTabuleiro, contador = 0, check;
@@ -10,36 +11,18 @@ int main(){
     scanf("%d", &qtdTabuleiro);
     //main loop
     while (contador < qtdTabuleiro){
-        alocaTadTabuleiro(&tab);
-        contador++;
-        alocaTabuleiro(&tab);
+        tab = inicializaTabuleiro(TAM);
+        contador++;;
         entrada(jogo, &tab);
         check = validar(tab, jogo);
         if(check == 1){
             printf("Tabuleiro %d invalido\n", contador);
         }
         else{
-           //valor = vitoria(tab);
-           //printf("Tabuleiro %d ganhador: %c\n",contador, valor); 
            analisar(jogo, contador, tab);
         }
-        liberaMemoria(&tab);
+        liberaTabuleiro(&tab, TAM);
+        liberaTadTabuleiro(tab);
     }
     return 0;
 }
-
-/*
-[0][0] [0][1] [0][2]
-[1][0] [1][1] [1][2]
-[2][0] [2][1] [2][2]
-
-Maneiras de ganhar:
-1º primeira coluna
-2º segunda coluna
-3º terceira coluna
-4º Diagonal Principal
-5º Diagonal secundária
-6º primeira linha
-7º segunda linha
-8º terceira linha
-*/

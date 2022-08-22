@@ -1,28 +1,22 @@
-# ifndef jogo_da_velha_h
-# define jogo_da_velha_h
+#ifndef jogo_da_velha_h
+#define jogo_da_velha_h
 
 typedef struct tabuleiro TADTabuleiro;
 
-void alocaTadTabuleiro(TADTabuleiro**);
+TADTabuleiro *inicializaTabuleiro(int);
 
-char vitoriaC(char *jogo);
+void liberaTabuleiro(TADTabuleiro **, int);
 
-void alocaTabuleiro(TADTabuleiro**);
+void liberaTadTabuleiro(TADTabuleiro *);
 
-void liberaMemoria(TADTabuleiro**);
+void entrada(char*, TADTabuleiro **);
 
-void entrada(char jogo[9], TADTabuleiro**);
+int validar(TADTabuleiro *, char *);
 
-int validar(TADTabuleiro*, char*);
+int vitoria(TADTabuleiro *);
 
-int vitoria(TADTabuleiro*);
+void analisar(char *, int, TADTabuleiro *);
 
-void mostraJogo(TADTabuleiro*);
+void mestre(TADTabuleiro*, int );
 
-char vitoriaM(char jogo[9]);
-
-int mestre(char jogo[9], char jogador);
-
-void analisar(char jogo[9],int contador, TADTabuleiro*);
-
-#endif //jogo_da_velha_h
+#endif // jogo_da_velha_h
